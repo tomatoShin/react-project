@@ -1,7 +1,13 @@
 import React from "react";
+import PostViewer from "../components/post/PostViewer";
 
 const PostPage = () => {
-  return <div>掲示板 読み</div>;
+  return (
+    <>
+      {/* <HeaderContainer /> */}
+      <PostViewer />
+    </>
+  );
 };
 
 export default PostPage;
