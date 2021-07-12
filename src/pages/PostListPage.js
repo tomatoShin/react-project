@@ -1,11 +1,12 @@
 import React from "react";
-import Button from "../components/common/Button";
+import PostList from "../components/posts/PostList";
 
 const PostListPage = () => {
   return (
-    <div>
-      <Button>ボタン</Button>
-    </div>
+    <>
+      {/* <HeaderContainer></HeaderContainer> */}
+      <PostList />
+    </>
   );
 };
 
