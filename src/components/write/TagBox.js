@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import React, { useCallback, useEffect, useState } from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
 
 const TagBoxBlock = styled.div`
   width: 100%;
@@ -72,24 +72,28 @@ const TagList = React.memo(({ tags, onRemove }) => (
   </TagListBlock>
 ));
 
-const TagBox = () => {
-  const [input, setInput] = useState('');
+const TagBox = ({ tags, onChangeTags }) => {
+  const [input, setInput] = useState("");
   const [localTags, setLocalTags] = useState([]);
 
   const insertTag = useCallback(
     (tag) => {
       if (!tag) return;
       if (localTags.includes(tag)) return;
-      setLocalTags([...localTags, tag]);
+      const nextTags = [...localTags, tag];
+      setLocalTags(nextTags);
+      onChangeTags(nextTags);
     },
-    [localTags],
+    [localTags, onChangeTags]
   );
 
   const onRemove = useCallback(
     (tag) => {
-      setLocalTags(localTags.filter((t) => t !== tag));
+      const nextTags = localTags.filter((t) => t !== tag);
+      setLocalTags(nextTags);
+      onChangeTags(nextTags);
     },
-    [localTags],
+    [localTags, onChangeTags]
   );
 
   const onChange = useCallback((e) => {
@@ -100,10 +104,15 @@ const TagBox = () => {
     (e) => {
       e.preventDefault();
       insertTag(input.trim());
-      setInput('');
+      setInput("");
     },
-    [input, insertTag],
+    [input, insertTag]
   );
+
+  useEffect(() => {
+    setLocalTags(tags);
+  }, [tags]);
+
   return (
     <TagBoxBlock>
       <h4>タグ</h4>
