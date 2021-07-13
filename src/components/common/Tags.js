@@ -20,8 +20,8 @@ const Tags = ({ tags }) => {
   return (
     <TagsBlock>
       {tags.map((tag) => (
-        <Link className="tag" to={"/?tag=${tag}"} key={tag}>
-          ${tag}
+        <Link className="tag" to={`/?tag=${tag}`} key={tag}>
+          #{tag}
         </Link>
       ))}
     </TagsBlock>

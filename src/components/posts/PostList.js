@@ -51,6 +51,23 @@ const PostItem = () => {
   );
 };
 
+// const PostItem = ({ post }) => {
+//   const { publishedDate, user, tags, title, body, _id } = post;
+//   return (
+//     <PostItemBlock>
+//       <h2>
+//         <Link to={`/@${user.username}/${_id}`}>{title}</Link>
+//       </h2>
+//       <SubInfo
+//         username={user.username}
+//         publishedDate={new Date(publishedDate)}
+//       />
+//       <Tags tags={tags} />
+//       <p>{body}</p>
+//     </PostItemBlock>
+//   );
+// };
+
 const PostList = () => {
   return (
     <PostItemBlock>
@@ -67,5 +84,29 @@ const PostList = () => {
     </PostItemBlock>
   );
 };
+
+// const PostList = ({ posts, loading, error, showWriteButton }) => {
+//   if (error) {
+//     return <PostListBlock>エラー発生</PostListBlock>;
+//   }
+//   return (
+//     <PostListBlock>
+//       <WritePostButtonWrapper>
+//         {showWriteButton && (
+//           <Button cyan to="/write">
+//             新しいスレッド作成
+//           </Button>
+//         )}
+//       </WritePostButtonWrapper>
+//       {!loading && posts && (
+//         <div>
+//           {posts.map((post) => (
+//             <PostItem post={post} key={post._id} />
+//           ))}
+//         </div>
+//       )}
+//     </PostListBlock>
+//   );
+// };
 
 export default PostList;
